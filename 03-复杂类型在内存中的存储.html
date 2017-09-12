@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>复杂类型在内存中的存储</title>
+
+</head>
+
+<body>
+  <script>
+// 复杂类型在内存中的存储
+// 这是构造函数
+    function Person(name,age){
+      this.name = name;
+      this.age = age;
+      this.sayHi = function(){
+        console.log('Hi');
+      }
+    }
+
+
+    var p = new Person('zs',18);
+    //   // 在堆中创建了一个用来存放person对象的空间，并把它的地址给P并且给person添加了2个属性'zs'，'18'
+    var p1 = p;
+    // 在栈中开辟一个属于p1空间，这个p1和P指向一个相同的地址0x01
+    p1.name = 'ls';
+    // 根据在栈中P1对应的地址修改堆中name属性为ls
+    console.log(p.name);
+  </script>
+</body>
+
+</html>

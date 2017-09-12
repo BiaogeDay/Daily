@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>简单类型作为函数的参数</title>
+</head>
+
+<body>
+  <script>
+  // 简单类型作为函数的参数
+    function fn(a,b){
+      a = a+1;
+       // 在栈中开辟一个空间来存储a，他的值为a+1也就是3
+      b = b+1;
+      // 在栈中开辟一个空间来存储b，他的值为b+1也就是4
+      console.log(a,b);
+    }
+    var x = 2;
+    // 在栈中开辟一个空间来存储x，他的值为2
+    var y = 3;
+     // 在栈中开辟一个空间来存储y，他的值为3
+    fn(x,y);
+    console.log(x,y);
+
+    // 目标: 以上代码就是为了演示 
+    // 形参和实参在内存中是如何存储的
+  </script>
+</body>
+
+</html>

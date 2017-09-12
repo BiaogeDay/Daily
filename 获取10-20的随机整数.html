@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取10-20的随机整数</title>
+</head>
+<body>
+    <script>
+        // 获取10-20的随机数
+        function getRandomNum(min,max){
+            var min=Math.ceil(min);
+            var max=Math.floor(max);
+            return Math.floor(Math.random()*(max-min+1)+min);
+        }
+        document.write(getRandomNum(10,20));
+        // 10-20的随机数 不包括20
+        Math.random()*(max-min)+min;
+        // 10-20的随机数 包括20
+        Math.random()*(max-min+1)+min;
+        // 10-20的随机数 包括20  的整数
+        Math.floor(Math.random()*(max-min+1)+min);
+    </script>
+</body>
+</html>
