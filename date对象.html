@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 写一个函数，格式化日期对象，返回yyyy-MM-dd HH:mm:ss的形式
+        // Wed Sep 13 2017 10:34:05 GMT+0800 (中国标准时间)  --> 2014-04-04 08:05:03                                                  
+        // function formatDate(date) {
+        //     if (!(date instanceof Date)) {
+        //         alert('您的输入有误！');
+        //         return;
+        //     }
+        //     var year = date.getFullYear();
+        //     var month = date.getMonth() + 1;
+        //     var day = date.getDate();
+        //     var hour = date.getHours();
+        //     var minute = date.getMinutes();
+        //     var second = date.getSeconds();
+        //     month = month > 9 ? month : '0' + month;
+        //     day = day > 9 ? day : '0' + day;
+        //     hour = hour > 9 ? hour : '0' + hour;
+        //     minute = minute > 9 ? minute : '0' + minute;
+        //     second = second > 9 ? second : '0' + second;
+        //     return year + '-' + month + '-' + day + '  ' + hour + ":" + minute + ':' + second;
+        // }
+        // var date = new Date();
+        // var result = formatDate(date);
+        // document.write(result);
+
+         // 计算时间差，返回相差的天/时/分/秒
+         function dValue(startDate,endDate){
+            if(!(startDate instanceof Date)||!(endDate instanceof Date)){
+                alert('您的输入有误！');
+            }
+            var dvalue=endDate-startDate;
+            dvalue=dvalue/1000;
+            var day=Math.floor(dvalue/60/60/24);
+            var hour=Math.floor(dvalue/60/60%24);
+            var minute=Math.floor(dvalue/60%60);
+            var second=Math.floor(dvalue%60);
+            return {
+                day:day,
+                hour:hour,
+                minute:minute,
+                second:second
+            }
+         }
+         var start=new Date(2017,8,1);
+         var end =new Date(2017,9,13);
+         document.write(dValue(start,end));
+    </script>
+</body>
+
+</html>

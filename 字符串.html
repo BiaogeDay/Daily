@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1. charAt() 方法从一个字符串中返回指定的字符
+        // var str = 'hello world';
+        // document.write(str.charAt(str.length - 1));
+        // 2.concat();方法将一个或多个字符串与原字符串连接合并，形成一个新的字符串并返回。不用这个方法 一般用字符串连接符 +号
+        // var str1 = '我爱';
+        // var str2='我的祖国';
+        // var str=str1.concat(str2);
+        // document.write(str);
+        // 3.slice(开始时的索引,结束时的索引);提取字符串的一部分
+        // var newStr=str.slice(2,4);
+        //4. substring()
+        //5.substr方法返回一个字符串中从指定位置开始到指定字符数的字符。
+        // "abcoefoxyozzopp"查找字符串中所有o出现的位置
+        // var str='abcoefoxyozzopp';
+        // var array=[];
+        // do{
+        //     var index=str.indexOf('o',index+1);
+        //     if(index!=-1){
+        //         array.push(index);
+        //     }
+        // }while(index>-1);
+        // document.write(array);
+        // 把字符串中所有的o替换成!
+        // var s = 'abcoefoxyozzopp';
+        // var index=-1;
+        // do{
+        //     index=s.indexOf('o',index+1);
+        //     if(index!==-1){
+        //         s=s.replace('o','!');
+        //     }
+        // }while(index!==-1);
+        // document.write(s);
+         // 把字符串中的所有空白去掉'   abc       xyz  a    123   '
+         var str = '   abc       xyz  a    123   ';
+        //  var arr=str.split('');
+        //  var newArr=[];
+        // //  document.write(arr);
+        // for(var i=0;i<arr.length;i++){
+        //     if(arr[i]!=' '){
+        //         newArr[newArr.length]=arr[i];
+        //     }
+        // }
+        // document.write(newArr.join(''));
+        // var newStr=str.trim();
+        // var result=newStr.split('');
+        // var newArray=[];
+        // for(var i=0;i<result.length;i++){
+        //     if(result[i]!=' '){
+        //         newArray[newArray.length]=result[i];
+        //     }
+        // }
+        // document.write(newArray);
+        // 判断一个字符串中出现次数最多的字符，统计这个次数
+        var str = 'abcoefoxyozzopp';
+        var o={};
+        for(var i=0;i<str.length;i++){
+            var item=str[i];
+            if(o[item]){
+                o[item]++;
+            }else{
+                o[item]=1;
+            }
+        }
+        var max=0;
+        var chart;
+        for(var key in o){
+            if(o[key]>max){
+                max=o[key];
+                chart=key;
+            }
+        }
+        document.write(max);
+        document.write(chart);
+    </script>
+</body>
+
+</html>
