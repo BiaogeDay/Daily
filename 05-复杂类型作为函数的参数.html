@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <script>
+  // 复杂类型作为函数的参数
+  function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.sayHi = function () {
+      console.log(this.name + ': hello');
+    }
+  }
+  var p = new Person('zs', 18);
+  // 在堆中创建了一个用来存放person对象的空间，并把它的地址给P 这个person有两个属性 'zs' '18'
+  function fn(person) {
+     //p作为参数将p的地址给了person，person的地址也为0x01
+    person.name = 'ls';
+    // 将person对应的堆地址里面存储的name属性改为'ls'
+    person = new Person('ww', 20);
+    // 在堆中创建一个存储person的空间 他的地址为0x02，并将这个地址赋给person，person的地址变为0x02，其中的name和age属性均发生改变
+    console.log(person.name);
+    // person.name变为ww
+  }
+  fn(p);
+  console.log(p.name);
+  // p对应的地址下的name属性由'zs'变成了'ls'
+  </script>
+</body>
+
+</html>
