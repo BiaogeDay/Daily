@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 判断一个字符串中出现次数最多的字符，统计这个次数
+        var str = 'abcoefoxyozzopp';
+        var o = {};
+        for (var i = 0; i < str.length; i++) {
+            var item = str[i];
+            if (o[item]) {
+                o[item]++;
+            } else {
+                o[item] = 1;
+            }
+        }
+        var max = 0;
+        var char;
+        for (var j in o) {
+            if (max < o[j]) {
+                max = o[j];
+                char = j;
+            }
+        }
+        document.write(char + '<br />');
+        document.write(max);
+    </script>
+</body>
+
+</html>
