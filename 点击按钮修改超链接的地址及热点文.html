@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+			<a href="#">呼啸而过</a>
+			<input type="button" name="" id="" value="去往何处" />
+	</body>
+	<script type="text/javascript">
+		var oA=document.getElementsByTagName("a");
+		var oIn=document.getElementsByTagName("input");
+		var onOff=true;
+		oIn[0].onclick=function(){
+			if(onOff){
+			oA[0].href="http://www.baidu.com";
+			oA[0].innerHTML="我是一只小小鸟";
+			}else{
+				oA[0].innerHTML="呼啸而过";
+			}
+			onOff=!onOff;
+		}
+	</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	</head>
+
+	<body>
+		<input type="button" value="呜呜" />
+		<input type="button" value="呜呜" />
+		<input type="button" value="呜呜" />
+	</body>
+	<script type="text/javascript">
+		var oIn = document.getElementsByTagName("input");
+		for(var i=0;i<oIn.length;i++){
+			oIn[i].onclick=function(){
+				for(var j=0;j<oIn.length;j++){
+					oIn[j].value="呜呜";
+				}
+				this.value="哈哈";
+			}
+		}
+	</script>
+
+</html>

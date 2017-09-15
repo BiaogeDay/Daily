@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="images/3.jpg" alt="" title="你瞅啥"/>
+		<img src="images/happy.gif" alt="" title="你瞅啥"/>
+		<input type="button" value="提交" />
+	</body>
+	<script type="text/javascript">
+		var oImg=document.getElementsByTagName("img");
+		var oIn=document.getElementsByTagName("input");
+		oIn[0].onclick=function(){
+			for(var i=0;i<oImg.length;i++){
+				oImg[i].title="瞅你咋地";
+			}
+		}
+	</script>
+</html>

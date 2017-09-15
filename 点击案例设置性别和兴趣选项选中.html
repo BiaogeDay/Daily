@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="radio" name="sex" id="" />男
+		<input type="radio" name="sex" id="" />女
+		<input type="checkbox" name="hobby" id="" />篮球
+		<input type="checkbox" name="hobby" id="" />足球
+		<input type="checkbox" name="hobby" id="" />玻璃球
+		<input type="checkbox" name="hobby" id="" />冰球
+		<input type="button" value="快速选择" id="tjan"/>
+	</body>
+	<script type="text/javascript">
+		var oIn=document.getElementsByTagName("input");
+		oIn[6].onclick=function(){
+			oIn[1].checked=true;
+			oIn[5].checked=true;
+		}
+	</script>
+</html>

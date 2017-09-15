@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		var oUl=document.getElementsByTagName("ul")[0];
+		var li=document.getElementsByTagName("li");
+		li[0].onclick=function(){
+			for(var i=0;i<li.length;i++){
+				li[i].style.fontSize="20px";
+				li[i].style.fontWeight="700";
+				li[i].style.color="bisque";
+			}
+		}
+	</script>
+</html>

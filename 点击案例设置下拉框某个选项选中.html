@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<select name="xial">
+			<option value="">北京</option>
+			<option value="">天津</option>
+			<option value="">河北</option>
+			<option value="" id="a">固喃</option>
+		</select>
+		<input type="button" value="快速设置" />
+	</body>
+	<script type="text/javascript">
+		var oSelect=document.getElementsByTagName("select")[0];
+		var a = document.getElementById('a')
+		var oInput=document.getElementsByTagName("input")[0];
+		oInput.onclick=function(){
+			a.selected=true;
+		}
+	</script>
+</html>
