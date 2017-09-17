@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			input {
+				border: 0;
+				border: 1px solid #ccc;
+				width: 300px;
+				height: 30px;
+				margin: 10px;
+				/*获取插入条之后的蓝色外边框去除*/
+				outline-style: none;
+				padding-left: 10px;
+				font-size: 18px;
+			}
+			
+			.wrong {
+				border: 1px solid red;
+			}
+			
+			.wrong-span {
+				color: red;
+				height: 30px;
+				line-height: 30px;
+			}
+			
+			.right {
+				color: green;
+			}
+		</style>
+	</head>
+
+	<body>
+		账号:<input type="text"><span></span><br> 密码:
+		<input type="text"><span></span>
+	</body>
+	<script type="text/javascript">
+		var oInp=document.getElementsByTagName("input");
+		var oSpan=document.getElementsByTagName("span");
+		oInp[0].onblur=function(){
+			var str=this.value;
+			if(str==""){
+				alert("请输入内容");
+			}
+		}
+		oInp[0].oninput=function(){
+			var str=this.value;
+			if(str.length<6||str.length>20){
+					oSpan[0].innerHTML="输入有误，请输入6-20个字符";
+					oSpan[0].className="wrong-span";
+					this.className="wrong";
+				}else{
+					this.className='';
+					oSpan[0].innerHTML="恭喜你，输入成功！正在上传，请稍后。。。";
+					oSpan[0].className="right";
+				}
+		}
+	</script>
+
+</html>

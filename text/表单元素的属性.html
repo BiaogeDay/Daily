@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" value="尼古拉斯伯爵" />
+		<textarea name="" rows="" cols="">啊啊啊啊</textarea>
+		<select id="sel">
+			<option value="apple">苹果</option>
+			<option value="banana">香蕉</option>
+			<option value="orange">橙子</option>
+			<option value="peach">桃子</option>
+		</select>
+		<input type="checkbox" />玩游戏
+		<input type="checkbox" />学习
+		<input type="checkbox" />写bug
+		<input type="checkbox" />学习玩游戏
+	</body>
+	<script type="text/javascript">
+		var oIn=document.getElementsByTagName("input");
+		//禁用文本框
+		oIn[0].disabled=true;
+		oIn[2].checked=true;
+		oIn[4].checked=true;
+		var oPtion=document.getElementsByTagName("option");
+		oPtion[2].selected=true;
+		var oSel=document.getElementById("sel");
+		console.log(oSel.value);
+	</script>
+</html>
