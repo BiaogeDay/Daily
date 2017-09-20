@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" value="请输入内容" />
+	</body>
+	<script type="text/javascript">
+		var oInp=document.getElementsByTagName("input");
+		oInp[0].onfocus=function(){
+			if(this.value=="请输入内容"){
+				this.value="";
+			}
+		}
+		oInp[0].onblur=function(){
+			if(this.value==""){
+				this.value="请输入内容"
+			}
+		}
+	</script>
+</html>

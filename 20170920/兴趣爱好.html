@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button>男生爱好</button>
+		<button>女生爱好</button>
+		<input type="radio" name="sex" />男
+		<input type="radio" name="sex" />女
+		<input type="checkbox" />抽烟
+		<input type="checkbox" />喝酒
+		<input type="checkbox" />吃饭
+		<input type="checkbox" />睡觉
+		<input type="checkbox" />烫头
+		<input type="checkbox" />大保健
+		<input type="checkbox" />写bug
+		<input type="checkbox" />生活不至于眼前的苟且，还有html，css和js
+	</body>
+	<script type="text/javascript">
+		// 单击男生爱好 选一批兴趣
+		var oBtn = document.getElementsByTagName("button");
+		var oInp = document.getElementsByTagName("input");
+		oBtn[0].onclick = function() {
+			for(var i = 0; i < oInp.length; i++) {
+				oInp[i].checked = false;
+			}
+			for(var i = 0; i < oInp.length; i++) {
+				if(i != 1 && i != 2 && i != 4) {
+					oInp[i].checked = true;
+				}
+			}
+		}
+		oBtn[1].onclick = function() {
+			for(var i = 0; i < oInp.length; i++) {
+				oInp[i].checked = false;
+			}
+			for(var i = 1; i < oInp.length; i++) {
+				if(i != 7 && i != 2 && i != 4) {
+					oInp[i].checked = true;
+				}
+			}
+		}
+	</script>
+
+</html>
