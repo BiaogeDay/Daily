@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#oUl {
+				width: 300px;
+				height: 200px;
+				border: 1px solid black;
+				list-style: none;
+				overflow: auto;
+			}
+		</style>
+	</head>
+	<ul id="oUl">
+		<!--<li>这是你说的话</li>-->
+	</ul>
+	<span id="person">小明:</span>
+	<input type="text" id="text1" />
+	<input type="button" value="发送" id="btn" />
+<li><strong style="color:green"></strong></li>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//封装一个根据ID获取元素的方法
+		function $(id){
+			return document.getElementById(id);
+		}
+//		获取相关元素
+		var oUl=$("oUl");
+		var oText1=$("text1");
+		var oBtn=$("btn");
+		var oPerson=$("person");
+		oText1.focus();//让文本框自动获取焦点
+		oBtn.onclick=function(){
+			var str=oText1.value;
+			oUl.innerHTML+="<li><strong style='color:green'>"+oPerson.innerHTML+"</strong>"+str+"</li>";
+			oText1.value="";
+			oText1.focus();
+		}
+		//切换名字
+		oPerson.onclick=function(){
+			if(this.innerHTML=="小明"){
+				this.innerHTML="小光";
+			}else{
+				this.innerHTML="小明";
+			}
+		}
+	</script>
+</html>
