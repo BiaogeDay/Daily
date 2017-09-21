@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <span id="oSpan">span</span>
+        <p>ppppppp</p>
+        <div id="abc"><em>em</em></div>
+    </div>
+</body>
+<script>
+    var oSpan=document.getElementById("oSpan"); 
+    oSpan.parentNode.style.backgroundColor="pink";
+    console.log(oSpan.parentNode);
+    var oEm=document.getElementsByTagName("em")[0];
+    oEm.parentNode.parentNode.style.border="2px solid green";
+    var oBox=document.getElementById("box");
+    console.log(oBox.cloneNode());
+    var newBox=oBox.cloneNode(true);
+    document.body.appendChild(newBox);
+</script>
+</html>

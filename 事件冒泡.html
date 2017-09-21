@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        div {
+            padding: 50px;
+            color: white;
+        }
+
+        #box {
+            background-color: red;
+        }
+
+        #box2 {
+            background-color: blue;
+        }
+
+        #box3 {
+            background-color: green;
+        }
+    </style>
+</head>
+<<body id="oo" style="height: 2000px;">
+    <div id="box">box
+        <div id="box2">box2
+            <div id="box3">box3</div>
+        </div>
+    </div>
+    </body>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+        function fn() {
+            alert(this.id);
+        }
+        $("box").onmouseover = fn;
+        $("box2").onmouseover = null;
+        $("box3").onmouseover = fn;
+
+        document.body.onclick=fn;
+    </script>
+
+</html>

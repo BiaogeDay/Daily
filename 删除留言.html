@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #oUl {
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<!--
+    <a href="#">删除</a> 它会在本页面发生一次跳转
+    <a href="javascript:;">删除</a> 阻止当前链接进行跳转
+-->
+<body>
+    <ul id="oUl">
+        <!--<li>你发表的留言<a href="javascript:;">删除</a></li>-->
+    </ul>
+    <input type="text" id="text1" />
+    <input type="button" value="单击发送" id="btn1" />
+</body>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    var oUl=$("oUl"),oText=$("text1"),oBtn=$("btn1");
+    oBtn.onclick=function(){
+        var str=oText.value;
+        oUl.innerHTML+='<li>'+ str +'<a href="javascript:;">删除</a></li>';
+        oText.value="";
+        oText.focus();
+        var aA=oUl.getElementsByTagName("a");
+        var aLi=oUl.getElementsByTagName("li");
+        for(var i=0;i<aA.length;i++){
+            aA[i].onclick=function(){
+                this.parentNode.parentNode.removeChild(this.parentNode);
+            }
+        }
+
+    }
+</script>
+</html>

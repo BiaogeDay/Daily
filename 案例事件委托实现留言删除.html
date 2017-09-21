@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #oUl {
+            width: 280px;
+            height: 200px;
+            border: 1px solid darkgoldenrod;
+        }
+    </style>
+</head>
+<body>
+    <ul id="oUl">
+        <li>你发表的留言<a href="javascript:;">删除</a></li>
+        <li>2222<a href="javascript:;">删除</a></li>
+        <li>你发表33333的留言<a href="javascript:;">删除</a></li>
+        <li>你发4444表的留言<a href="javascript:;">删除</a></li>
+        <li>555555<a href="javascript:;">删除</a></li>
+        <li>66666<a href="javascript:;">删除</a></li>
+        <li>777<a href="javascript:;">删除</a></li>
+    </ul>
+    <input type="text" id="text" />
+    <input type="button" value="单击发送" id="btn" />
+</body>
+<script>
+    var oUl=document.getElementById("oUl");
+    oUl.onclick=function(e){
+        e=e||event;
+        var abc=e.target||e.srcElement;
+        if(abc.nodeName=="A"){
+            this.removeChild(abc.parentNode);
+        }
+    }
+</script>
+</html>
