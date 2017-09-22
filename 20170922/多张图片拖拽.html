@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        img {
+            width: 100px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="xn.png" alt="" />
+    <img src="xn.png" alt="" />
+    <img src="xn.png" alt="" />
+    <img src="xn.png" alt="" />
+    <img src="xn.png" alt="" />
+    <img src="xn.png" alt="" />
+    <img src="xn.png" alt="" />
+    <img src="xn.png" alt="" />
+    <img src="xn.png" alt="" />
+
+</body>
+<script>
+    var oImg = document.getElementsByTagName("img");
+    for (var i = 0; i < oImg.length; i++) {
+        drag(oImg[i]);
+    }
+    function drag(obj) {
+        obj.onmousedown = function (e) {
+            e = e || event;
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.returnValue && (e.returnValue = false);
+            // 给图片设置全部捕获 （将鼠标的焦点放到图片上面，从而达到取消图片的默认行为）
+            obj.setCapture && obj.setCapture();
+            var disX = e.clientX - this.offsetLeft;
+            var disY = e.clientY - this.offsetTop;
+            document.onmousemove = function (e) {
+                e = e || event;
+                obj.style.left = e.clientX - disX + "px";
+                obj.style.top = e.clientY - disY + "px";
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                obj.repleaseCapture && obj.repleaseCapture();
+            }
+        }
+    }
+
+</script>
+
+</html>
