@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				margin:100px 0;
+				width: 700px;
+				height: 400px;
+				position: relative;
+				border: 1px solid red;
+			}
+			img {
+				position: absolute;
+				width: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="high起来" />
+		<input type="button" value="敲代码去" />
+		<div id="box">
+			<img src="img/00.jpg" id="oImg" />
+		</div>
+    </body>
+    <script>
+        var aInp=document.getElementsByTagName("input");
+        var oBox=document.getElementById("box");
+        var oImg=document.getElementById("oImg");
+        var timer=null;
+        aInp[0].onclick=function(){
+            timer=setInterval(function(){
+                oImg.style.left = Math.round(Math.random()*(oBox.offsetWidth-oImg.offsetWidth)) + "px";
+				oImg.style.top = Math.round(Math.random()*(oBox.offsetHeight-oImg.offsetHeight)) + "px";
+            },100);
+        }
+        aInp[1].onclick=function(){
+            clearInterval(timer);
+            timer=null;
+        }
+    </script>
+    </html>

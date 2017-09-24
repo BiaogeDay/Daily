@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+			}
+			img{
+				position: fixed;
+				top: 100px;
+				
+			}
+			img:nth-child(2) {
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="img/1.gif" alt="" />
+		<img src="img/2.gif" alt="" />
+    </body>
+    <script>
+        var oImg=document.getElementsByTagName("img");
+        var timer=null;
+        timer=setTimeout(function(){
+            for (var i = 0; i < oImg.length; i++) {
+                oImg[i].style.display="none";
+                
+            }
+        },3000);
+    </script>
+</html>

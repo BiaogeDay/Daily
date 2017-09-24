@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #small {
+            width: 480px;
+            height: 288px;
+            background: url(img/small.png) no-repeat;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+
+        #rec {
+            width: 100px;
+            height: 100px;
+            background: url(img/bj.png);
+            position: absolute;
+            display: none;
+            cursor: move;
+        }
+
+        #big {
+            width: 400px;
+            height: 400px;
+            background: url(img/big.jpg) no-repeat;
+            position: absolute;
+            left: 600px;
+            top: 100px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="small">
+        <div id="rec"></div>
+    </div>
+    <div id="big">
+    </div>
+</body>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    var oSmall = $("small");
+    var oRec = $("rec");
+    var oBig = $("big");
+    oSmall.onmouseover = function () {
+        oRec.style.display = "block";
+        oBig.style.display = "block";
+    }
+    oSmall.onmousemove = function (e) {
+        e = e || event;
+        var x = e.clientX - this.offsetLeft - oRec.offsetWidth / 2;
+        var y = e.clientY - this.offsetTop - oRec.offsetHeight / 2;
+        x = x < 0 ? 0 : x;
+        x = x > this.offsetWidth - oRec.offsetWidth  ? this.offsetWidth - oRec.offsetWidth  : x;
+        y = y < 0 ? 0 : y;
+        y = y > this.offsetHeight - oRec.offsetHeight  ? this.offsetHeight - oRec.offsetHeight  : y;
+        oRec.style.left = x + "px";
+        oRec.style.top = y + "px";
+        oBig.style.backgroundPosition = -4 * x + "px " + -4 * y + "px";
+    }
+    oSmall.onmouseout = function () {
+        oRec.style.display = "none";
+        oBig.style.display = "none";
+    }
+</script>
+
+</html>
