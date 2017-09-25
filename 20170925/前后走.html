@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box {
+        width: 100px;
+        height: 100px;
+        background-color: greenyellow;
+        position: absolute;
+        left: 100px;
+        top: 100px;    
+    }
+    </style>
+</head>
+<body>
+    <input type="button" value="往前走">
+    <input type="button" value="往后走">
+    <div id="box"></div>
+</body>
+<script>
+    var oInp=document.getElementsByTagName("input");
+    var oBox=document.getElementById("box");
+    var timer=null;
+
+    function move(speed,target){
+        clearInterval(timer);
+        timer=null;
+        var dis=oBox.offsetLeft;
+        timer=setInterval(function(){
+            dis+=speed
+            if(dis>=target&&speed>0||dis<=target&&speed<0){
+                dis=target;
+            }
+            oBox.style.left=dis+"px";
+            if(dis==target){
+                clearInterval(timer);
+                timer=null;
+            }
+        },30); 
+    }
+    oInp[0].onclick=function(){
+       move(11,800);
+    }
+    oInp[1].onclick=function(){
+        move(-11,100);
+    }
+</script>
+</html>

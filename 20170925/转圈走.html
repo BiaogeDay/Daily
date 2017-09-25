@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: greenyellow;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="转圈走">
+    <!-- <input type="button" value="往后走">
+    <input type="button" value="往上走">
+    <input type="button" value="往下走"> -->
+    <div id="box"></div>
+</body>
+<script>
+    var oInp = document.getElementsByTagName("input");
+    var oBox = document.getElementById("box");
+
+
+    function move(obj, attr, speed, target,fn) {
+
+        clearInterval(obj.timer);
+        obj.timer = null;
+        var dis = parseFloat(getStyle(obj, attr));
+        obj.timer = setInterval(function () {
+            dis += speed
+            if (dis >= target && speed > 0 || dis <= target && speed < 0) {
+                dis = target;
+            }
+            obj.style[attr] = dis + "px";
+            if (dis == target) {
+                clearInterval(obj.timer);
+                obj.timer = null;
+                fn&&fn();
+            }
+        }, 30);
+    }
+    oInp[0].onclick = function () {
+        move(oBox,"left",11, 800,function(){
+            move(oBox,"top",11,500,function(){
+                move(oBox,"left",-11,100,function(){
+                    move(oBox,"top",-11,100);
+                });
+            });
+        });
+    }
+    // oInp[1].onclick = function () {
+    //     move(oBox, "left", -11, 100);
+    // }
+    // oInp[2].onclick = function () {
+    //     move(oBox, "top", -11, 100);
+    // }
+    // oInp[3].onclick = function () {
+    //     move(oBox, "top", 11, 500);
+    // }
+    function getStyle(obj, attr) { // 形参相当于局部变量
+        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+    }
+
+</script>
+
+</html>
