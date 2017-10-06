@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 0;
+        }
+
+        .all {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .screen {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen li {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            float: left;
+        }
+
+        .screen ul {
+            position: absolute;
+            left: 0;
+            top: 0px;
+            width: 4000px;
+        }
+
+        .all ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .all ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .all ol li.current {
+            background: yellow;
+        }
+
+        #arr {
+            display: none;
+        }
+
+        #arr span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #arr #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!--外盒子-->
+    <div class="all" id='all'>
+        <!--内盒子-->
+        <div class="screen" id="screen">
+            <ul id="ul">
+                <li><img src="images/1.jpg" width="500" height="200" /></li>
+                <li><img src="images/2.jpg" width="500" height="200" /></li>
+                <li><img src="images/3.jpg" width="500" height="200" /></li>
+                <li><img src="images/4.jpg" width="500" height="200" /></li>
+                <li><img src="images/5.jpg" width="500" height="200" /></li>
+            </ul>
+            <!--小方块-->
+            <ol>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ol>
+            <!--左右小三角-->
+            <div id="arr">
+                <span id="left"><</span>
+                <span id="right">></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="myTools.js"></script>
+<script>
+    var oScreen = $("#screen");
+    var oArr = $("#arr");
+    var k = 1;
+    var oRight = $("#right");
+    var oLeft = $("#left");
+    var oUl = $("#ul");
+    var aLi = $("li", oUl);
+    var imgW = aLi[0].children[0].offsetWidth;
+    var newLi = aLi[0].cloneNode(true);
+    oUl.appendChild(newLi);
+    var newLi2 = aLi[aLi.length - 2].cloneNode(true);
+    oUl.insertBefore(newLi2, first(oUl));
+    var oNav = $("ol", oScreen)[0];
+    var navLi = $("li", oNav);
+    var timer = null;
+    navLi[0].className = "current";
+    oUl.style.left = -imgW * k + "px";
+
+    oRight.onclick = function () {
+        k++;
+        if (k >= aLi.length) {
+            k = 1;
+            oUl.style.left = -imgW * k + "px";
+        }
+        move(oUl, "left", 30, -imgW * k, function () {
+            if (k >= aLi.length - 1) {
+                k = 1;
+                oUl.style.left = -imgW * k + "px";
+            }
+            for (var i = 0; i < navLi.length; i++) {
+                navLi[i].className = "";
+            }
+            navLi[k - 1].className = "current";
+        });
+        // oUl.style.Left=-imgW*k+"px";
+    }
+
+    oLeft.onclick = function () {
+        k--;
+        if (k < 0) {
+            k = aLi.length - 2;
+            oUl.style.left = -imgW * k + "px";
+        }
+        move(oUl, "left", 30, -imgW * k, function () {
+            if (k <= 0) {
+                k = aLi.length - 2;
+                oUl.style.left = -imgW * k + "px";
+
+            }
+            for (var i = 0; i < navLi.length; i++) {
+                navLi[i].className = "";
+            }
+            navLi[k - 1].className = "current";
+        });
+        // oUl.style.Left=-imgW*k+"px";
+    }
+
+    oScreen.onmouseover = function () {
+        oArr.style.display = "block";
+        clearInterval(timer);
+        timer = null;
+    }
+    oScreen.onmouseout = function () {
+        oArr.style.display = "none";
+        timer = setInterval(autoPlay, 1000);
+    }
+    for (var i = 0; i < navLi.length; i++) {
+        navLi[i].index = i;
+        navLi[i].onmouseover = function () {
+            k = this.index + 1;
+            move(oUl, "left", 30, -imgW * k);
+            for (var i = 0; i < navLi.length; i++) {
+                navLi[i].className = "";
+            }
+            navLi[k - 1].className = "current";
+        }
+
+    }
+    timer = setInterval(autoPlay, 1000);
+    function autoPlay() {
+        k++;
+        move(oUl, "left", 30, -imgW * k, function () {
+            if (k >= aLi.length - 1) {
+                k = 1;
+                oUl.style.left = -imgW * k + "px";
+            }
+            for (var i = 0; i < navLi.length; i++) {
+                navLi[i].className = "";
+            }
+            navLi[k - 1].className = "current";
+        });
+    }
+
+</script>
+
+</html>

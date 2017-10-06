@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #box {
+            width: 516px;
+            height: 498px;
+            background:url(images/bj.jpg);
+            margin: 20px auto 0;
+            position: relative;
+        }
+        #oUl {
+            width: 285px;
+            height: 285px;
+            position: absolute;
+            left: 0px;
+            top: 68px;
+            list-style: none;
+            margin-left: 0;
+        }
+        #text {
+            width: 320px;
+            height: 80px;
+            position: absolute;
+            left: 0;
+            bottom: 20px;
+            outline: none;
+            border:none;
+        }
+        #btn {
+            position: absolute;
+            right: 210px;
+            bottom: 19px;
+            height: 20px;
+        }
+        #oSel {
+            position: absolute;
+            bottom: 20px;
+            right: 190px;
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="oUl">
+            
+        </ul>
+        <textarea id="text"></textarea>
+        <input type="button" value="发送" id="btn" />
+        <select id="oSel">
+            <option value="e">按下enter发送</option>
+            <option value="c">按下ctrl+enter发送</option>
+        </select>
+    </div>
+</body>
+ <script>
+    //  封装一个根据ID获取元素的方法
+    function $(id){
+        return document.getElementById(id);
+    }
+    // 获取相关元素
+    var oUl=$("oUl");
+    var oText=$("text");
+    var oSel=$("oSel");
+    var oBtn=$("btn");
+    // 给按钮添加点击事件
+    oText.focus();
+    oBtn.onclick=function(){
+        core();
+    }
+    function core(){
+        if(oText.value==""){
+            return alert("请输入对话内容");
+        }
+        oUl.innerHTML+="<li>"+oText.value+"</li>";
+        oText.value="";
+        oText.focus();
+    }
+    // 给整个文档添加键盘事件 按下回车或者ctrl+回车发送消息
+    document.onkeydown=function(e){
+        e=e||event;
+        // 按下回车键 但是不能按下ctrl
+        if(e.keyCode==13&&!e.ctrlKey){
+            // 判断选择的发送方式
+            if(oSel.value=="e"){
+                core();
+            }
+        }
+        // 按下回车和ctrl两个键
+        if(e.keyCode==13&&e.ctrlKey){
+            if(oSel.value=="c"){
+                core();
+            }
+        }
+    }
+ </script>
+</html>

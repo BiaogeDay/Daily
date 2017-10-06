@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#oUl {
+				width: 300px;
+				height: 200px;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="oUl">
+			<!--<li>这是你说的话</li>-->
+		</ul>
+		<span id="person">小明:</span><input type="text" id="text1" />
+		<input type="button" value="发送" id="btn" />
+	</body>
+	<script type="text/javascript">
+		// 将获取id元素的过程进行了简化 封装
+		function $(id) {
+			return document.getElementById(id);
+		}
+		// 分析功能： 需要先获取文本框中的内容
+		//单击按钮 发送   就是往ul放一个li标签 li标签里面再放你的文本框内容
+		
+		//事件三要素
+		//１　获取相关元素
+		var oUl = $("oUl");
+		var oText1 = $("text1");
+		var oBtn = $("btn");
+		var oPerson = $("person");
+		
+		
+		oText1.focus();
+		
+		// 2 事件类型  单击事件  给btn添加单击事件
+		
+		oBtn.onclick = function() {// 3绑定事件处理函数
+			//将文本框中的值获取到
+			var str = oText1.value;
+			oUl.innerHTML =  "<li><strong style='color:green'>" + oPerson.innerHTML+"</strong>" + str +"</li>"+oUl.innerHTML;
+			oText1.value　=　"";
+			oText1.focus();
+		}
+		oPerson.onclick = function() {
+			
+			if(this.innerHTML == "李太白:") {
+				this.innerHTML = "窦晓福:";
+			}else{
+				this.innerHTML = "李太白:";
+			}
+		}
+	</script>
+</html>
+

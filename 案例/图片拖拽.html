@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        img {
+            width: 100px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="images/xn.png" alt="" />
+</body>
+<script>
+    var oImg=document.getElementsByTagName("img")[0];
+    oImg.onmousedown=function(e){
+        e=e||event;
+        if(e.preventDefault){
+            e.preventDefault();
+        }
+        e.returnValue&&(e.returnValue=false);
+        // 给图片设置全部捕获 （将鼠标的焦点放到图片上面，从而达到取消图片的默认行为）
+        oImg.setCapture&&oImg.setCapture();
+        var disX=e.clientX-this.offsetLeft;
+        var disY=e.clientY-this.offsetTop;
+        document.onmousemove=function(e){
+            e=e||event;
+            oImg.style.left=e.clientX-disX+"px";
+            oImg.style.top=e.clientY-disY+"px";
+        }
+        document.onmouseup=function(){
+            document.onmousemove=null;
+            oImg.repleaseCapture&&oImg.repleaseCapture();
+        }
+    }
+</script>
+</html>

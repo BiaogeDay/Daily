@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" value="禁用" />
+		<input type="text" value="文本框内容" />
+	</body>
+	<script type="text/javascript">
+		var oIn=document.getElementsByTagName("input");
+		oIn[0].onclick=function(){
+			if(this.value=="禁用"){
+				oIn[1].disabled=true;
+				this.value="解禁";
+			}else{
+				oIn[1].disabled=false;
+				this.value="禁用";
+			}
+		}
+	</script>
+</html>
+

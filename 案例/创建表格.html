@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div>
+			姓名：<input id="nameText" type="text"><br>
+			 年龄：<input id="ageText" type="text">
+			<input type="button" value="添加学生">
+			<input type="button" value="删除一行">
+		</div>
+		<table id="stuInfo" width="200" border="1">
+			<tbody>
+				<tr >
+					<td>姓名</td>
+					<td>年龄</td>
+				</tr>
+				<tr >
+					<td>江泽民</td>
+					<td>50</td>
+				</tr>
+				<tr >
+					<td>芙蓉</td>
+					<td>30</td>
+				</tr>
+				<tr >
+					<td>凤姐</td>
+					<td>28</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	<!--引入一个你自己写的工具库-->
+	<script src="myTools.js"></script>
+	<script type="text/javascript">
+		var oTable=$("#stuInfo");
+		var tBody=oTable.children[0];
+		setColor();
+		function setColor(){
+			var aTr=tBody.children;
+			for(var i=0;i<aTr.length;i++){
+				if(i%2==0){
+					aTr[i].style.backgroundColor="chartreuse";
+				}else{
+					aTr[i].style.backgroundColor="chocolate";
+				}
+			}
+		}
+		var addBtn = $("input")[2];
+		addBtn.onclick=function(){
+			//创建2个td
+		var userName=document.createElement("td");
+		var userAge=document.createElement("td");
+		userName.innerHTML=$("#nameText").value;
+		userAge.innerHTML=$("#ageText").value;
+		//在创建一个tr
+		var aTr=document.createElement("tr");
+		aTr.appendChild(userName);
+		aTr.appendChild(userAge);
+		tBody.appendChild(aTr);
+		setColor();
+		}
+		var removeBtn = $("input")[3];
+		removeBtn.onclick=function(){
+			if(first(tBody)!=last(tBody)){
+				tBody.removeChild(last(tBody));
+			}
+		}
+		
+	</script>
+</html>
+
