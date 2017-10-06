@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        div div {
+            width: 280px;
+            height: 200px;
+            text-align: center;
+            border: 1px solid black;
+            line-height: 200px;
+            display: none;
+            font-size: 50px;
+        }
+
+        .active {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <button>让第一个选项卡停止播放</button>
+    <button>让第二个选项卡自动播放</button>
+    <button>让第一个选项卡和第二个选项卡反转</button>
+    <div id="box">
+        <input type="button" value="按钮1" class="active" />
+        <input type="button" value="按钮2" />
+        <input type="button" value="按钮3" />
+        <div style="display: block;">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+    <div id="box2">
+        <input type="button" value="按钮1" class="active" />
+        <input type="button" value="按钮2" />
+        <input type="button" value="按钮3" />
+        <div style="display: block;">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+</body>
+<script>
+    (function (w) {
+        function Tab(id) {
+            this.parent = document.getElementById(id);
+            this.aInp = this.parent.getElementsByTagName("input");
+            this.aDiv = this.parent.getElementsByTagName("div");
+            this.timer = null;
+            this.num = 0;
+            this.isplay = false;
+            this.init();
+        }
+        Tab.prototype.init = function () {
+            var that = this;
+            for (var i = 0; i < this.aInp.length; i++) {
+                this.aInp[i].index = i;
+                this.aInp[i].onmouseover = function () {
+                    that.fnTab(this.index);
+                }
+            }
+        }
+        Tab.prototype.fnTab = function (idx) {
+            for (var j = 0; j < this.aInp.length; j++) {
+                this.aInp[j].className = "";
+                this.aDiv[j].style.display = "none"
+            }
+            this.aInp[idx].className = "active";
+            this.aDiv[idx].style.display = "block";
+        }
+        Tab.prototype.autoPlay = function () {
+            var that = this;
+            this.isplay = true;
+            this.timer = setInterval(function () {
+                that.num++;
+                if (that.num > that.aInp.length - 1) {
+                    that.num = 0;
+                }
+                that.fnTab(that.num);
+            }, 1000);
+        }
+        Tab.prototype.stop = function () {
+            this.isplay = false;
+            clearInterval(this.timer);
+        }
+        w.Tab = Tab;
+    })(window);
+    var btn=document.getElementsByTagName("button");
+    var t1=new Tab("box");
+    t1.autoPlay();
+    var t2=new Tab("box2");
+    btn[0].onclick=function(){
+        t1.stop();
+    }
+    btn[1].onclick=function(){
+        t2.autoPlay();
+    }
+    btn[2].onclick=function(){
+        if(t1.isplay){
+            t1.stop();
+        }else{
+            t1.autoPlay();
+        }
+        if(t2.isplay){
+            t2.stop();
+        }else{
+            t2.autoPlay();
+        }
+    }
+
+</script>
+
+</html>
