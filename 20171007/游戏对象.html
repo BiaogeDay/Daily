@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<style type="text/css">
+			#map {
+				width: 800px;
+				height: 600px;
+				margin: 0 auto;
+				position: relative;
+				background: #ccc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="map">
+
+		</div>
+	</body>
+	<script src="food.js"></script>
+	<script src="snake.js"></script>
+	<script type="text/javascript">
+		//创建一个整体的游戏对象  将里面的小对象们统一起来
+		(function(w){
+			function Game(map){
+				//将食物构造函数实例化一下 产生一个实例对象 食物 存到当前的游戏Game构造函数里面的this身上
+				this.food=new Food();
+				this.snake=new Snake();
+				this.map=map;
+			}
+			Game.prototype.start=function(){
+				this.food.render(this.map);
+				this.snake.render(this.map);
+			}
+			//暴露
+			w.Game=Game;
+		})(window);
+	
+			//获取地图
+			var oMap = document.getElementById("map");
+//			var food = new Food();
+//			food.render(oMap);
+//			var snake=new Snake();
+//			snake.render(oMap);
+			var game=new Game(oMap);
+			game.start();
+	</script>
+
+</html>

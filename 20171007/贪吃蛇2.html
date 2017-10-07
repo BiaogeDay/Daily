@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<style type="text/css">
+			#map {
+				width: 800px;
+				height: 600px;
+				margin: 0 auto;
+				position: relative;
+				background: #ccc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="map">
+
+		</div>
+	</body>
+	<script src="food.js"></script>
+	<script type="text/javascript">
+		//蛇对象：属性和方法
+		//	蛇的属性:
+		//	width 20
+		//	height 20
+		//	body=[蛇头,蛇身1,蛇身2]
+		//	
+		//	body=[
+		//	{x:3,y:2,color:"red"},
+		//	{x:2,y:2,color:"blue"},
+		//	{x:1,y:2,color:"blue"}
+		//	]
+		//	蛇的身体 三节
+		//	每一节部分都有这些信息 所以可以用对象json去描述
+		//	蛇的颜色 
+		//	蛇的位置
+		//	让蛇产生并放置到页面上 渲染方法 render
+		(function(w) {
+				//创建蛇的构造函数
+				function Snake(width, height, direction) {
+						// 添加了一些宽高属性 给了一个默认值
+				this.width = width || 20;
+				this.height = height || 20;
+				// 设置蛇的身体
+				this.body = [
+				 {x:3,y:2,color:"red"},//蛇头
+				 {x:2,y:2,color:"orange"},// 蛇身1
+				 {x:1,y:2,color:"orange"}// 蛇身2
+				];
+				// 设置蛇头方向
+				this.direction = direction || "right";
+				}
+				Snake.prototype.render = function(map) {
+					for(var i = 0; i < this.body.length; i++) {
+						var oDiv = document.createElement("div");
+						oDiv.style.width = this.width + "px";
+						oDiv.style.height = this.height + "px";
+						oDiv.style.left = this.body[i].x * this.width + "px";
+						oDiv.style.top=this.body[i].y*this.height+"px";
+						oDiv.style.position="absolute";
+						oDiv.style.backgroundColor = this.body[i].color;
+						map.appendChild(oDiv);
+					}
+				}
+				w.Snake=Snake;
+				})(window);
+
+			//获取地图
+			var oMap = document.getElementById("map");
+			var food = new Food();
+			food.render(oMap);
+			var snake=new Snake();
+			snake.render(oMap);
+	</script>
+
+</html>
